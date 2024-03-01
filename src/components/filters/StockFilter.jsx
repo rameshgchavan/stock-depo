@@ -19,7 +19,7 @@ const StockFilter = ({ stockData, setSlicedStock, setFirstRowIndex }) => {
     // This function used by useEffect
     useEffect(() => {
         filterStock();
-    }, [])
+    }, [stockData])
 
     const filterStock = () => {
         // Initialized data varible
@@ -27,7 +27,8 @@ const StockFilter = ({ stockData, setSlicedStock, setFirstRowIndex }) => {
 
         filteredData = stockData
             ?.filter((stock) => {
-                return stock.vehicleNo.toLowerCase().includes(searchedName.current.toLowerCase())
+                return stock.vehicle.toLowerCase().includes(searchedName.current.toLowerCase())
+                    || stock.rcNo.toLowerCase().includes(searchedName.current.toLowerCase())
                     || stock.driver.toLowerCase().includes(searchedName.current.toLowerCase())
                     || stock.owner.toLowerCase().includes(searchedName.current.toLowerCase())
             });
