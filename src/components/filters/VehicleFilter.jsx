@@ -19,7 +19,7 @@ const VehiclesFilter = ({ vehicleData, setSlicedVehicles, setFirstRowIndex }) =>
     // This function used by useEffect
     useEffect(() => {
         filterVehicles();
-    }, [])
+    }, [vehicleData])
 
     const filterVehicles = () => {
         // Initialized data varible
