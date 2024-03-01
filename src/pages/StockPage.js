@@ -26,7 +26,8 @@ const StockPage = () => {
         entry: "",
         date: "",
         time: "",
-        vehicleNo: "",
+        vehicle: "",
+        rcNo: "",
         tareWeight: 0,
         grossWeight: 0,
         driver: "",
@@ -44,7 +45,8 @@ const StockPage = () => {
                         <th>Entry</th>
                         <th>Date</th>
                         <th>Time</th>
-                        <th>Vehicle No</th>
+                        <th>Vehicle</th>
+                        <th>RC No</th>
                         <th>Tare Weight</th>
                         <th>Gross Weight</th>
                         <th>Brass</th>
@@ -54,7 +56,6 @@ const StockPage = () => {
                     </tr>
                 </thead>
                 <tbody>
-
                     {
                         slicedStock.map((stockDetails, index) => {
                             return <tr key={index}>
@@ -62,7 +63,8 @@ const StockPage = () => {
                                 <td>{stockDetails.entry}</td>
                                 <td>{stockDetails.date}</td>
                                 <td>{stockDetails.time}</td>
-                                <td>{stockDetails.vehicleNo}</td>
+                                <td>{stockDetails.vehicle}</td>
+                                <td>{stockDetails.rcNo}</td>
                                 <td>{stockDetails.tareWeight}</td>
                                 <td>{stockDetails.grossWeight}</td>
                                 <td>{((stockDetails.grossWeight - stockDetails.tareWeight) / 4800)?.toFixed(2)}</td>

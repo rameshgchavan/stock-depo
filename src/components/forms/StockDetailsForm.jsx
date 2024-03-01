@@ -16,7 +16,7 @@ const StockDetailsForm = ({ stockDetails }) => {
     const dispatch = useDispatch();
 
     const {
-        _id, entry, date, time, vehicleNo,
+        _id, entry, date, time, vehicle, rcNo,
         tareWeight, grossWeight,
         driver, owner, stocker
     } = stockDetails;
@@ -46,7 +46,7 @@ const StockDetailsForm = ({ stockDetails }) => {
     };
 
     const handleInputChange = () => {
-        const index = vehicleData.findIndex((vehicle) => vehicle.rcNo === stockForm.current.vehicleNo.value);
+        const index = vehicleData.findIndex((vehicle) => vehicle.rcNo === stockForm.current.rcNo.value);
 
         if (index > -1) {
             setVehicleDetails(vehicleData[index]);
@@ -87,7 +87,23 @@ const StockDetailsForm = ({ stockDetails }) => {
                 </div>
 
                 <Form.Floating className="mb-3">
-                    <Form.Control name="vehicleNo" placeholder="Vehicle No" defaultValue={vehicleNo} required
+                    <Form.Control name="vehicle" placeholder="Vehicle" defaultValue={vehicle} required
+                        list="vehicleList"
+                    />
+                    <datalist id="vehicleList">
+                        {
+                            vehicleData?.map((vehicle, index) => {
+                                return (
+                                    <option key={index}> {vehicle.vehicle}</option>
+                                )
+                            })
+                        }
+                    </datalist>
+                    <Form.Label className="text-primary fw-bold">Vehicle</Form.Label>
+                </Form.Floating>
+
+                <Form.Floating className="mb-3">
+                    <Form.Control name="rcNo" placeholder="RC No" defaultValue={rcNo} required
                         list="rcNoList"
                         onChange={handleInputChange}
                     />
@@ -100,7 +116,7 @@ const StockDetailsForm = ({ stockDetails }) => {
                             })
                         }
                     </datalist>
-                    <Form.Label className="text-primary fw-bold">Vehicle No</Form.Label>
+                    <Form.Label className="text-primary fw-bold">RC No</Form.Label>
                 </Form.Floating>
 
                 <Form.Floating className="mb-3">
