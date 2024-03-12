@@ -6,8 +6,8 @@ const vehicleSchema = new mongoose.Schema({
     vehicle: String,
     rcNo: String,
     tareWeight: Number,
-    driver: Object,
-    owner: Object
+    drivers: String,
+    owners: String
 });
 
 // Export schema
