@@ -142,7 +142,7 @@ const StockDetailsForm = ({ stockDetails }) => {
                     />
                     <datalist id="driverList">
                         {
-                            vehicleDetails?.driver?.map((driver, index) => {
+                            vehicleDetails?.drivers?.split(",").map((driver, index) => {
                                 return (
                                     <option key={index}> {driver}</option>
                                 )
@@ -159,7 +159,7 @@ const StockDetailsForm = ({ stockDetails }) => {
                     />
                     <datalist id="ownerList">
                         {
-                            vehicleDetails?.owner?.map((owner, index) => {
+                            vehicleDetails?.owners?.split(",").map((owner, index) => {
                                 return (
                                     <option key={index}> {owner}</option>
                                 )

@@ -27,8 +27,8 @@ const VehiclePage = () => {
         vehicle: "",
         rcNo: "",
         tareWeight: 0,
-        driver: "",
-        owner: ""
+        drivers: "",
+        owners: ""
     };
 
     return (
@@ -53,8 +53,8 @@ const VehiclePage = () => {
                                 <td>{vehicleDetails.vehicle}</td>
                                 <td>{vehicleDetails.rcNo}</td>
                                 <td>{vehicleDetails.tareWeight}</td>
-                                <td>{(vehicleDetails.driver).join(",")}</td>
-                                <td>{(vehicleDetails.owner).join(",")}</td>
+                                <td>{vehicleDetails.drivers}</td>
+                                <td>{vehicleDetails.owners}</td>
                                 <td>
                                     <Button variant="outline-warning" size="sm"
                                         onClick={() => { setVehicleDetailsModalShow(true); setVehicleDetails(vehicleDetails) }}

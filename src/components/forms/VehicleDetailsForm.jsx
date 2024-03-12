@@ -17,7 +17,7 @@ const VehicleDetailsForm = ({ vehicleDetails }) => {
 
     const {
         _id, vehicle, rcNo, tareWeight,
-        driver, owner
+        drivers, owners
     } = vehicleDetails;
 
     const vehicleForm = useRef();
@@ -27,17 +27,17 @@ const VehicleDetailsForm = ({ vehicleDetails }) => {
 
         const formData = new FormData(vehicleForm.current);
 
-        // const vehicleData = Object.fromEntries(formData.entries());
-        const vehicleData = {};
+        const vehicleData = Object.fromEntries(formData.entries());
+        // const vehicleData = {};
 
-        formData.forEach((value, key) => {
-            if (key === "driver" || key === "owner") {
-                vehicleData[key] = value.split(",")
-            }
-            else {
-                vehicleData[key] = value;
-            }
-        });
+        // formData.forEach((value, key) => {
+        //     if (key === "driver" || key === "owner") {
+        //         vehicleData[key] = value.split(",")
+        //     }
+        //     else {
+        //         vehicleData[key] = value;
+        //     }
+        // });
 
         // Update
         if (_id) {
@@ -72,13 +72,13 @@ const VehicleDetailsForm = ({ vehicleDetails }) => {
                 </Form.Floating>
 
                 <Form.Floating className="mb-3">
-                    <Form.Control name="driver" placeholder="Driver Name" defaultValue={driver} />
-                    <Form.Label className="text-primary fw-bold">Driver Name</Form.Label>
+                    <Form.Control name="drivers" placeholder="Drivers Name" defaultValue={drivers} />
+                    <Form.Label className="text-primary fw-bold">Drivers Name</Form.Label>
                 </Form.Floating>
 
                 <Form.Floating className="mb-3">
-                    <Form.Control name="owner" placeholder="Owner Name" defaultValue={owner} />
-                    <Form.Label className="text-primary fw-bold">Owner Name</Form.Label>
+                    <Form.Control name="owners" placeholder="Owners Name" defaultValue={owners} />
+                    <Form.Label className="text-primary fw-bold">Owners Name</Form.Label>
                 </Form.Floating>
 
                 <Button variant="outline-success" size="sm" type="submit">
