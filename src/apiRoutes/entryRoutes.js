@@ -4,35 +4,35 @@ const express = require("express");
 // Import tokenVerification function
 const tokenVerification = require("../functions/tokenVerificationModel");
 
-// Import stocks Schema Model
-const stockModel = require("../models/stockModel");
+// Import entry Schema Model
+const entryModel = require("../models/entryModel");
 
 // Create Router object
-const stockRoutes = express.Router();
+const entryRoutes = express.Router();
 
 // (APIs) downwards
-// Get route to get stock details
-stockRoutes.route("/").get(tokenVerification, async (req, res) => {
+// Get route to get entries
+entryRoutes.route("/").get(tokenVerification, async (req, res) => {
     // Destruct request header
     const { dbname } = req.headers;
 
-    const StockModel = stockModel(dbname);
+    const EntryModel = entryModel(dbname);
 
     // Find by id and update object of document in collection
-    await StockModel.find()
+    await EntryModel.find()
         .then(data => { res.send(data) })
         .catch(err => res.send(err));
 });
 
-// Post route to update stock details
-stockRoutes.route("/save").post(tokenVerification, async (req, res) => {
+// Post route to update entry
+entryRoutes.route("/save").post(tokenVerification, async (req, res) => {
     // Destruct request body
-    const { dbName, stockData } = req.body;
+    const { dbName, entry } = req.body;
 
-    const StockModel = stockModel(dbName);
+    const EntryModel = entryModel(dbName);
 
     // Find by id and update object of document in collection
-    await StockModel(stockData).save()
+    await EntryModel(entry).save()
         .then(res.send({
             code: 201,
             message: `Saved successfully.`
@@ -40,15 +40,15 @@ stockRoutes.route("/save").post(tokenVerification, async (req, res) => {
         .catch(err => res.send(err));
 });
 
-// Put route to update stock details
-stockRoutes.route("/update").put(tokenVerification, async (req, res) => {
+// Put route to update entry
+entryRoutes.route("/update").put(tokenVerification, async (req, res) => {
     // Destruct request body
     const { dbName, findVal, updateData } = req.body;
 
-    const StockModel = stockModel(dbName);
+    const EntryModel = entryModel(dbName);
 
     // Find by id and update object of document in collection
-    await StockModel.findOneAndUpdate(findVal, updateData)
+    await EntryModel.findOneAndUpdate(findVal, updateData)
         .then(res.send({
             code: 202,
             message: `Updated successfully.`
@@ -56,5 +56,5 @@ stockRoutes.route("/update").put(tokenVerification, async (req, res) => {
         .catch(err => res.send(err));
 });
 
-// Export stock Routes
-module.exports = stockRoutes;
+// Export entry Routes
+module.exports = entryRoutes;

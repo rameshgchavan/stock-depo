@@ -5,8 +5,9 @@ const dotEnv = require("dotenv");
 
 // Import Routes
 const userRoutes = require("./src/apiRoutes/userRoutes");
-const stockRoutes = require("./src/apiRoutes/stockRoutes");
+const entryRoutes = require("./src/apiRoutes/entryRoutes");
 const vehicleRoutes = require("./src/apiRoutes/vehicleRoutes");
+const formRoutes = require("./src/apiRoutes/formRoutes");
 
 // Create object of express
 const app = express();
@@ -15,8 +16,9 @@ const app = express();
 // app.use(cors());
 app.use(express.json({ limit: '200mb' }));
 app.use("/users", userRoutes);
-app.use("/stock", stockRoutes);
+app.use("/entries", entryRoutes);
 app.use("/vehicles", vehicleRoutes);
+app.use("/form", formRoutes);
 
 //Run frontend
 app.use(express.static('./client/build')); //Note: Copy build folder of frontend and paste it into backend

@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 
 // User Schema
-const stockSchema = new mongoose.Schema({
+const entrySchema = new mongoose.Schema({
     entry: String,
     date: String,
     time: String,
@@ -16,4 +16,4 @@ const stockSchema = new mongoose.Schema({
 });
 
 // Export schema
-module.exports = stockSchema;
+module.exports = entrySchema;

@@ -1,19 +1,19 @@
 // Import mongoose
-const userSchema = require("../shemas/stockSchema");
+const entrySchema = require("../shemas/entrySchema");
 const mongoDBConnection = require("../dbConnection/mongoDbConnection");
 
 // User Model
-const stockModel = (dbName) => {
+const entryModel = (dbName) => {
     // Creating connetion with database
     const connection = mongoDBConnection.useDb(`stock-depo-${dbName}`, { useCache: true });
 
     // Returning model by creating new or getting existing model
     return (
-        connection.model("stock-details", userSchema) ||
+        connection.model("stock-details", entrySchema) ||
         connection.models["stock-details"]
 
     )
 }
 
 // Export User Model
-module.exports = stockModel
+module.exports = entryModel
