@@ -84,7 +84,7 @@ const Login = () => {
             // navigate to user or stock page
             user.user === "auth"
                 ? navigate("/private/users")
-                : navigate("/private/entry");
+                : navigate("/private/entries");
         }
     }
 

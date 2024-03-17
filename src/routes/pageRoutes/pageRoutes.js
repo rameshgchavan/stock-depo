@@ -1,7 +1,7 @@
 import { Route } from 'react-router-dom';
 
 // Pages 
-import EntriesPagePage from "../../pages/EntriesPage";
+import EntriesPage from "../../pages/EntriesPage";
 import VehiclePage from "../../pages/VehiclesPage";
 import UsersPage from "../../pages/UsersPage";
 
@@ -14,7 +14,7 @@ const authRoutes =
 
 const userRoutes =
     <Route>
-        <Route path="entry" element={<EntriesPagePage />} />
+        <Route path="entries" element={<EntriesPage />} />
     </Route>
 
 const adminRoutes =
