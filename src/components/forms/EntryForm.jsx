@@ -4,12 +4,12 @@ import { Button, Form, FormGroup } from "react-bootstrap";
 import { FaRegSave } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 
-import { createStockRequest, updateStockRequest } from "../../apiRequests/stockAPIs";
-import { addStockDetailsAction, updateStockDetailsAction } from "../../redux/features/stockSlice";
+import { createEntryRequest, updateEntryRequest } from "../../apiRequests/entryRequests";
+import { addEntryAction, updateEntryAction } from "../../redux/features/entrySlice";
 
 // This component used by customerForm/index.js
 // This component is part of customer form and holds customer details
-const StockDetailsForm = ({ stockDetails }) => {
+const EntryForm = (props) => {
     const { scrutinizedUser } = useSelector(state => state.usersReducer);
     const { vehicleData } = useSelector(state => state.vehiclesReducer);
 
@@ -19,52 +19,52 @@ const StockDetailsForm = ({ stockDetails }) => {
         _id, entry, date, time, vehicle, rcNo,
         tareWeight, grossWeight,
         driver, owner, stocker
-    } = stockDetails;
+    } = props.entry;
 
-    const stockForm = useRef();
+    const entryForm = useRef();
     const [vehicleDetails, setVehicleDetails] = useState({});
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const formData = new FormData(stockForm.current);
+        const formData = new FormData(entryForm.current);
 
-        const stockData = Object.fromEntries(formData.entries());
+        const entry = Object.fromEntries(formData.entries());
 
         // Update
         if (_id) {
-            const response = await updateStockRequest(scrutinizedUser, { _id }, stockData);
-            dispatch(updateStockDetailsAction({ _id, stockData }));
+            const response = await updateEntryRequest(scrutinizedUser, { _id }, entry);
+            dispatch(updateEntryAction({ _id, entry }));
             alert(response.message);
         }
         // Save
         else {
-            const response = await createStockRequest(scrutinizedUser, stockData);
-            dispatch(addStockDetailsAction(stockData));
+            const response = await createEntryRequest(scrutinizedUser, entry);
+            dispatch(addEntryAction(entry));
             alert(response.message);
         }
     };
 
     const handleInputChange = () => {
-        const index = vehicleData.findIndex((vehicle) => vehicle.rcNo === stockForm.current.rcNo.value);
+        const index = vehicleData.findIndex((vehicle) => vehicle.rcNo === entryForm.current.rcNo.value);
 
         if (index > -1) {
             setVehicleDetails(vehicleData[index]);
 
-            stockForm.current.tareWeight.value = vehicleData[index].tareWeight;
+            entryForm.current.tareWeight.value = vehicleData[index].tareWeight;
         }
         else {
             setVehicleDetails({});
-            stockForm.current.tareWeight.value = 0;
+            entryForm.current.tareWeight.value = 0;
         }
 
-        stockForm.current.brass.value = (
-            (stockForm.current.grossWeight.value - stockForm.current.tareWeight.value) / 4800
+        entryForm.current.brass.value = (
+            (entryForm.current.grossWeight.value - entryForm.current.tareWeight.value) / 4800
         )?.toFixed(2);
     };
 
     return (
-        <Form ref={stockForm} onSubmit={handleSubmit}>
+        <Form ref={entryForm} onSubmit={handleSubmit}>
             <FormGroup className="col border shadow rounded p-3">
                 <div className="d-flex justify-content-evenly">
                     <Form.Floating className="my-3">
@@ -183,4 +183,4 @@ const StockDetailsForm = ({ stockDetails }) => {
     )
 }
 
-export default StockDetailsForm;
+export default EntryForm;

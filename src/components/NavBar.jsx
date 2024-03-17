@@ -37,7 +37,7 @@ const NavBar = () => {
                             {/* Admin Links (Only Admin can access) */}
                             {scrutinizedUser.user == "admin" &&
                                 <Nav>
-                                    <Nav.Link as={Link} to="/private/stock">Stock</Nav.Link>
+                                    <Nav.Link as={Link} to="/private/entry">Entries</Nav.Link>
                                     <Nav.Link as={Link} to="/private/vehicles">Vehicles</Nav.Link>
                                     {/* <Nav.Link as={Link} to="/private/users">Users</Nav.Link> */}
                                 </Nav>

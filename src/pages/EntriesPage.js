@@ -5,24 +5,25 @@ import { FaPlusCircle, FaRegEdit } from "react-icons/fa";
 
 import { useSelector } from 'react-redux';
 
-import StockDetailsModal from "../components/modals/StockDetailsModal";
-import StockFilter from '../components/filters/StockFilter';
+import EntryModal from "../components/modals/EntryModal";
+import EntryFilter from '../components/filters/EntryFilter';
+// import NestedForm from '../components/forms/NestedForm';
 
 // This is a home page
 // Users: routes/pageRoutes/pageRoutes.js
-const StockPage = () => {
-    // Getting stock data from store
-    const { stockData } = useSelector(state => state.stockReducer);
+const EntriesPage = () => {
+    // Getting entries from store
+    const { entries } = useSelector(state => state.entryReducer);
 
     // to hide/show modal
-    const [stockDetailsModalShow, setStockDetailsModalShow] = useState(false);
+    const [entryModalShow, setEntryModalShow] = useState(false);
     // to prefill Form 
-    const [stockDetails, setStockDetails] = useState();
+    const [entry, setEntry] = useState();
 
-    const [slicedStock, setSlicedStock] = useState([]);
+    const [slicedEntries, setSlicedEntries] = useState([]);
     const [firstRowIndex, setFirstRowIndex] = useState(0);
 
-    const emptyData = {
+    const emptyEntry = {
         entry: "",
         date: "",
         time: "",
@@ -37,7 +38,7 @@ const StockPage = () => {
 
     return (
         <Container>
-            <StockFilter stockData={stockData} setSlicedStock={setSlicedStock} setFirstRowIndex={setFirstRowIndex} />
+            <EntryFilter entries={entries} setSlicedEntries={setSlicedEntries} setFirstRowIndex={setFirstRowIndex} />
             <Table striped hover size="sm" responsive>
                 <thead>
                     <tr>
@@ -57,23 +58,23 @@ const StockPage = () => {
                 </thead>
                 <tbody>
                     {
-                        slicedStock.map((stockDetails, index) => {
+                        slicedEntries.map((entry, index) => {
                             return <tr key={index}>
                                 <td>{firstRowIndex + index + 1}</td>
-                                <td>{stockDetails.entry}</td>
-                                <td>{stockDetails.date}</td>
-                                <td>{stockDetails.time}</td>
-                                <td>{stockDetails.vehicle}</td>
-                                <td>{stockDetails.rcNo}</td>
-                                <td>{stockDetails.tareWeight}</td>
-                                <td>{stockDetails.grossWeight}</td>
-                                <td>{((stockDetails.grossWeight - stockDetails.tareWeight) / 4800)?.toFixed(2)}</td>
-                                <td>{stockDetails.driver}</td>
-                                <td>{stockDetails.owner}</td>
-                                <td>{stockDetails.stocker}</td>
+                                <td>{entry.entry}</td>
+                                <td>{entry.date}</td>
+                                <td>{entry.time}</td>
+                                <td>{entry.vehicle}</td>
+                                <td>{entry.rcNo}</td>
+                                <td>{entry.tareWeight}</td>
+                                <td>{entry.grossWeight}</td>
+                                <td>{((entry.grossWeight - entry.tareWeight) / 4800)?.toFixed(2)}</td>
+                                <td>{entry.driver}</td>
+                                <td>{entry.owner}</td>
+                                <td>{entry.stocker}</td>
                                 <td>
                                     <Button variant="outline-warning" size="sm"
-                                        onClick={() => { setStockDetailsModalShow(true); setStockDetails(stockDetails) }}
+                                        onClick={() => { setEntryModalShow(true); setEntry(entry) }}
                                     >
                                         <FaRegEdit style={{ fontSize: "1.2rem" }} />
                                     </Button >
@@ -85,19 +86,21 @@ const StockPage = () => {
             </Table>
 
             <Button variant="outline-primary" size="sm"
-                onClick={() => { setStockDetailsModalShow(true); setStockDetails(emptyData) }}
+                onClick={() => { setEntryModalShow(true); setEntry(emptyEntry) }}
             >
                 <FaPlusCircle style={{ fontSize: "1.2rem" }} />
             </Button>
 
-            <StockDetailsModal
-                showMe={stockDetailsModalShow}
-                closeMe={setStockDetailsModalShow}
-                title={"Stock Details"}
-                stockDetails={stockDetails}
+            <EntryModal
+                showMe={entryModalShow}
+                closeMe={setEntryModalShow}
+                title={"Entries"}
+                entry={entry}
             />
+
+            {/* <NestedForm /> */}
         </Container>
     )
 }
 
-export default StockPage;
+export default EntriesPage;

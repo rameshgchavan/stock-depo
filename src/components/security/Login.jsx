@@ -9,12 +9,12 @@ import { useDispatch } from 'react-redux';
 import { addScrutinizedUserAction } from '../../redux/features/usersSlice';
 import { changeLoadingAction } from "../../redux/features/loadingSlice";
 import { addVehicleDataAction } from "../../redux/features/vehiclesSlice";
-import { addStockDataAction } from "../../redux/features/stockSlice";
+import { addEntriesAction } from "../../redux/features/entrySlice";
 
 // api request fuction
-import { readUserRequest } from '../../apiRequests/usersAPIs';
-import { readVehiclesRequest } from "../../apiRequests/vehicleAPIs";
-import { readStockRequest } from "../../apiRequests/stockAPIs";
+import { readUserRequest } from '../../apiRequests/usersRequsets';
+import { readVehiclesRequest } from "../../apiRequests/vehicleRequsets";
+import { readEntriesRequest } from "../../apiRequests/entryRequests";
 
 // component
 import LoadingModal from '../modals/LoadingModal';
@@ -75,8 +75,8 @@ const Login = () => {
             dispatch(addVehicleDataAction(vehicleData));
 
             // Get stock data and set in redux store
-            const stockData = await readStockRequest(user);
-            dispatch(addStockDataAction(stockData));
+            const entries = await readEntriesRequest(user);
+            dispatch(addEntriesAction(entries));
 
             // update redux to hide loading modal
             dispatch(changeLoadingAction(false));
@@ -84,7 +84,7 @@ const Login = () => {
             // navigate to user or stock page
             user.user === "auth"
                 ? navigate("/private/users")
-                : navigate("/private/stock");
+                : navigate("/private/entry");
         }
     }
 

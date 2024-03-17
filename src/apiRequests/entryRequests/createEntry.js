@@ -1,20 +1,16 @@
 import axios from "axios";
 
-// Save vehicle details
-const createStockRequest = async (scrutinizedUser, stockData) => {
+// Save entry
+export const createEntryRequest = async (scrutinizedUser, entry) => {
     const dbName = scrutinizedUser.email.replace(".", "-");
    
     return (
-        (await axios(`/stock/save`,
+        (await axios(`/entries/save`,
             {
                 method: "post",
                 headers: { authorization: `bearer ${scrutinizedUser.token}` },
-                data: { dbName, stockData }
+                data: { dbName, entry }
             }
         ))?.data
     );
 };
-
-export {
-    createStockRequest,
-}

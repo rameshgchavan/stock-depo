@@ -5,7 +5,7 @@ import { FaPlusCircle, FaRegEdit } from "react-icons/fa";
 
 import { useSelector } from 'react-redux';
 
-import VechicleDetailsModal from "../components/modals/VechicleDetailsModal";
+import VechicleModal from "../components/modals/VechicleModal";
 import VehiclesFilter from '../components/filters/VehicleFilter';
 
 // This is a home page
@@ -74,7 +74,7 @@ const VehiclePage = () => {
                 <FaPlusCircle style={{ fontSize: "1.2rem" }} />
             </Button>
 
-            <VechicleDetailsModal
+            <VechicleModal
                 showMe={vehicleDetailsModalShow}
                 closeMe={setVehicleDetailsModalShow}
                 title={"Vehicle Details"}

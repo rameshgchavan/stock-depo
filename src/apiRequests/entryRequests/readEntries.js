@@ -1,11 +1,11 @@
 import axios from "axios";
 
-// Get vehicles
-const readStockRequest = async (scrutinizedUser) => {
+// Get entries
+export const readEntriesRequest = async (scrutinizedUser) => {
     const dbname = scrutinizedUser.email.replace(".", "-");
 
     return (
-        (await axios(`/stock`,
+        (await axios(`/entries`,
             {
                 method: "get",
                 headers: { dbname, authorization: `bearer ${scrutinizedUser.token}` }
@@ -13,7 +13,3 @@ const readStockRequest = async (scrutinizedUser) => {
         ))?.data
     );
 };
-
-export {
-    readStockRequest,
-}

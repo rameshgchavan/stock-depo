@@ -4,7 +4,7 @@ import emailjs from "@emailjs/browser";
 // Import actions from redux/actions folder
 import { useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
-import { readUserEmailRequest, updateUserPasswordRequest } from '../../apiRequests/usersAPIs';
+import { readUserEmailRequest, updateUserPasswordRequest } from '../../apiRequests/usersRequsets';
 
 // This component used by routes/PublicRoutes
 // This component reset user login password

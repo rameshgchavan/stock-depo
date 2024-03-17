@@ -1,8 +1,8 @@
-import StockDetailsForm from "../forms/StockDetailsForm";
+import VehicleForm from "../forms/VehicleForm";
 import { Modal } from "react-bootstrap";
 
 // This component used by pages/CustomersPage, cards/CustomerCard and cards/TransactionCard
-const StockDetailsModal = ({ showMe, closeMe, title, stockDetails }) => {
+const VehicleModal = ({ showMe, closeMe, title, vehicleDetails }) => {
     if (!showMe) return null;
 
     return (
@@ -12,7 +12,7 @@ const StockDetailsModal = ({ showMe, closeMe, title, stockDetails }) => {
                     <Modal.Title style={{ height: "16px", fontSize: "16px" }}>{title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <StockDetailsForm stockDetails={stockDetails} />
+                    <VehicleForm vehicleDetails={vehicleDetails} />
                 </Modal.Body>
                 {/* <Modal.Footer>
                     <Button variant="secondary" onClick={() => closeMe(false)}>
@@ -24,4 +24,4 @@ const StockDetailsModal = ({ showMe, closeMe, title, stockDetails }) => {
     )
 }
 
-export default StockDetailsModal;
+export default VehicleModal;

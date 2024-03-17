@@ -1,12 +1,11 @@
 import { Container, Button, Form } from 'react-bootstrap';
 import emailjs from "@emailjs/browser";
 
-import { readUserEmailRequest } from '../../apiRequests/usersAPIs/readUsersAPIs';
+import { readUserEmailRequest, createUserRequest } from '../../apiRequests/usersRequsets';
 
 // Import actions from redux/actions folder
 import { useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
-import { createUserRequest } from '../../apiRequests/usersAPIs';
 
 // This component checks user credentials and saves new user to database
 // Users: routes/publicRoutes.js

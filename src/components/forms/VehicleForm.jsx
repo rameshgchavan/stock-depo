@@ -4,13 +4,13 @@ import { FaRegSave } from "react-icons/fa";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { createVehicleRequest, updateVehicleRequest } from "../../apiRequests/vehicleAPIs";
+import { createVehicleRequest, updateVehicleRequest } from "../../apiRequests/vehicleRequsets";
 
 import { addVehicleDetailsAction, updateVehicleDetailsAction } from "../../redux/features/vehiclesSlice";
 
 // This component used by customerForm/index.js
 // This component is part of customer form and holds customer details
-const VehicleDetailsForm = ({ vehicleDetails }) => {
+const VehicleForm = ({ vehicleDetails }) => {
     const { scrutinizedUser } = useSelector(state => state.usersReducer);
 
     const dispatch = useDispatch();
@@ -89,4 +89,4 @@ const VehicleDetailsForm = ({ vehicleDetails }) => {
     )
 }
 
-export default VehicleDetailsForm;
+export default VehicleForm;

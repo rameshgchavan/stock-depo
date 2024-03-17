@@ -1,11 +1,11 @@
 import axios from "axios";
 
-// Save vehicle details
-const updateStockRequest = async (scrutinizedUser, findVal, updateData) => {
+// Update entry
+export const updateEntryRequest = async (scrutinizedUser, findVal, updateData) => {
     const dbName = scrutinizedUser.email.replace(".", "-");
 
     return (
-        (await axios(`/stock/update`,
+        (await axios(`/entries/update`,
             {
                 method: "put",
                 headers: { authorization: `bearer ${scrutinizedUser.token}` },
@@ -14,7 +14,3 @@ const updateStockRequest = async (scrutinizedUser, findVal, updateData) => {
         ))?.data
     );
 };
-
-export {
-    updateStockRequest,
-}
